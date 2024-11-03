@@ -3,15 +3,7 @@
 // use async_trait::async_trait;
 // use mockall::mock;
 
-// mock! {
-//     pub MyRepo {}
 
-//     #[async_trait]
-//     impl Repository for MyRepo {
-//         async fn create_profile(&self, pool: &PgPool, new_profile: NewProfile) -> Result<EntityId, Error>;
-//         async fn get_profile(&self, pool: &PgPool, id: i64) -> Result<Option<Profile>, Error>;
-//     }
-// }
 
 // #[cfg(test)]
 // mod tests {
@@ -41,7 +33,10 @@
 
 //         let mut repo_mock = MockMyRepo::new();
 //         let pool = get_conn_pool().await;
-//         repo_mock.expect_get_profile().withf(|_pool: &PgPool, id: &i64| *id == 1).times(1).returning(move |_pool, id| Ok(Some(Profile {
+//         repo_mock.expect_get_profile()
+//             .withf(|_pool: &PgPool, id: &i64| *id == 1)
+//             .times(1)
+//             .returning(move |_pool, id| Ok(Some(Profile {
 //             id,
 //             user_name: user_name.clone(),
 //             full_name: full_name.clone(),
